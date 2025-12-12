@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Layout from '../components/Layout';
 import MobileNavbar from '../components/MobileNavbar';
+// 1. IMPORT THE AGROCOIN IMAGE
+import AgroCoinIcon from '../assets/agrocoin.jpg';
 
 
 const WalletPage: React.FC = () => {
@@ -32,14 +34,14 @@ const WalletPage: React.FC = () => {
   };
 
   const handleWeb3Convert = () => {
-      if (acConversionAmount > agroCoinBalance) {
-          alert("Insufficient AgroCoin balance for this conversion!");
-          return;
-      }
-      // Simulation: Deduct AgroCoin, Show success modal (not implemented here)
-      setAgroCoinBalance(prev => prev - acConversionAmount);
-      
-      alert(`Simulation Success! Converted ${acConversionAmount} AC to ${ethOutput} ETH. Please check your external wallet (Metamask/Bitget).`);
+    if (acConversionAmount > agroCoinBalance) {
+      alert("Insufficient AgroCoin balance for this conversion!");
+      return;
+    }
+    // Simulation: Deduct AgroCoin, Show success modal (not implemented here)
+    setAgroCoinBalance(prev => prev - acConversionAmount);
+    
+    alert(`Simulation Success! Converted ${acConversionAmount} AC to ${ethOutput} ETH. Please check your external wallet (Metamask/Bitget).`);
   };
 
 
@@ -49,7 +51,7 @@ const WalletPage: React.FC = () => {
       <header className="flex items-center justify-between p-4 bg-gray-900 text-white sticky top-0 z-10 shadow-md">
         <h1 className="text-xl font-bold">Agrosphere Wallet 💳</h1>
         <button className="text-sm px-3 py-1 bg-green-600 rounded-full hover:bg-green-700">
-            Settings
+          Settings
         </button>
       </header>
 
@@ -66,7 +68,16 @@ const WalletPage: React.FC = () => {
             </div>
             <div>
               <p className="text-sm opacity-80">AgroCoin (AC)</p>
-              <p className="text-2xl font-extrabold text-amber-300">{agroCoinBalance.toLocaleString()} AC</p>
+              {/* 2. UPDATED LINE: Added Flexbox for alignment and the image */}
+              <div className="flex items-center space-x-2"> 
+                <p className="text-2xl font-extrabold text-amber-300">{agroCoinBalance.toLocaleString()}</p>
+                <img 
+                  src={AgroCoinIcon} 
+                  alt="AgroCoin" 
+                  className="h-6 w-6 rounded-full object-cover" // Added styling for size and shape
+                />
+                <p className="text-2xl font-extrabold text-amber-300">AC</p>
+              </div>
             </div>
           </div>
         </div>
@@ -122,15 +133,15 @@ const WalletPage: React.FC = () => {
             </div>
             
             <div className="flex justify-between space-x-2">
-                <button className="flex-1 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg">
-                    Metamask
-                </button>
-                <button className="flex-1 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg">
-                    Bitget
-                </button>
-                <button className="flex-1 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg">
-                    Binance
-                </button>
+              <button className="flex-1 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg">
+                Metamask
+              </button>
+              <button className="flex-1 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg">
+                Bitget
+              </button>
+              <button className="flex-1 py-2 text-sm bg-blue-100 text-blue-700 rounded-lg">
+                Binance
+              </button>
             </div>
 
             <button 
@@ -147,16 +158,16 @@ const WalletPage: React.FC = () => {
           <h2 className="text-lg font-bold text-gray-800 mb-3">Transaction History</h2>
           <div className="text-sm space-y-2">
             <div className="flex justify-between">
-                <span className="text-green-600 font-medium">Deposit: ₦5,000</span>
-                <span className="text-gray-500">Dec 10, 2025</span>
+              <span className="text-green-600 font-medium">Deposit: ₦5,000</span>
+              <span className="text-gray-500">Dec 10, 2025</span>
             </div>
             <div className="flex justify-between">
-                <span className="text-red-600 font-medium">Spent: 8 AC (Tomatoes)</span>
-                <span className="text-gray-500">Dec 11, 2025</span>
+              <span className="text-red-600 font-medium">Spent: 8 AC (Tomatoes)</span>
+              <span className="text-gray-500">Dec 11, 2025</span>
             </div>
             <div className="flex justify-between">
-                <span className="text-blue-600 font-medium">Converted: 50 AC to ETH</span>
-                <span className="text-gray-500">Dec 12, 2025</span>
+              <span className="text-blue-600 font-medium">Converted: 50 AC to ETH</span>
+              <span className="text-gray-500">Dec 12, 2025</span>
             </div>
           </div>
           <button className="mt-3 text-sm font-medium text-blue-600 hover:underline">
